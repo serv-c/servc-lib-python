@@ -41,7 +41,7 @@ jobs:
       - if: github.server_url != 'https://github.com'
         run: sleep 20s
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           submodules: true
 
