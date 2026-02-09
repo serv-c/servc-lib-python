@@ -107,7 +107,7 @@ jobs:
 
       - name: "Get Tag"
         id: spectag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        uses: "WyriHaximus/github-action-get-previous-tag@v2"
 
       - name: Create Version Badge
         uses: RubbaBoy/BYOB@v1.3.0
