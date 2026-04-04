@@ -129,7 +129,14 @@ class Delta(Lake[DeltaTable]):
         predicate: str | None = None
         filter = self._filters(partitions)
         if filter is not None:
-            predicate = operator.join([" ".join(x) for x in filter])
+            predicate_list: List[str] = []
+            for tuple_value in filter:
+                if isinstance(tuple_value[-1], list):
+                    in_list = ", ".join(tuple_value[-1])
+                    predicate_list.append(" ".join([tuple_value[0], tuple_value[1], f"({in_list})"]))
+                else:
+                    predicate_list.append(" ".join(tuple_value))
+            predicate = operator.join(predicate_list)
 
         write_deltalake(
             table,
